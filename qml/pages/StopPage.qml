@@ -345,7 +345,7 @@ Page {
                         }
                         font.pixelSize: Theme.fontSizeExtraSmall
                         color: Theme.secondaryColor
-                        text: second_bus_time+qsTr(" minutes")+", "+second_bus_distance+qsTr(" meters")
+                        text: qsTr("SENTIDO: ")+second_bus_time+", "+qsTr(" BUS_ID: ")+second_bus_distance
                     }
                     Rectangle{
                         visible: testing_rectangles
@@ -460,5 +460,4 @@ Page {
                     }
                     )
     }
-
 }

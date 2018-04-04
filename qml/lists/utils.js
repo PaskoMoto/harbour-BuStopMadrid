@@ -4,34 +4,28 @@ function getLines(namelistModel){
     var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
     db.transaction(
                 function(tx){
-                    var query = 'SELECT * FROM lines ORDER BY category ASC, label ASC'
+                    var query = 'SELECT * FROM lines ORDER BY category ASC, code ASC'
                     var r1 = tx.executeSql(query)
                     var category = ''
                     for(var i = 0; i < r1.rows.length; i++){
                         switch (r1.rows.item(i).category){
-                        case '0circular':
-                            category = qsTr("Circular");
+                        case 'Red Diurna Convencional':
+                            category = qsTr("DIURNAS");
                             break;
-                        case '1largo_recorrido':
-                            category = qsTr("Long Line");
+                        case 'Red Universitaria':
+                            category = qsTr("UNIVERSITARIAS");
                             break;
-                        case '2regular':
-                            category = qsTr("Regular");
+                        case 'Líneas Aeropuerto':
+                            category = qsTr("LINEAS AEROPUERTO");
                             break;
-                        case '3tranvia':
-                            category = qsTr("Trolley Car");
-                            break;
-                        case '4especial':
-                            category = qsTr("Special");
-                            break;
-                        case '5nocturno':
-                            category = qsTr("Nighttime");
+                        case 'Red Nocturna':
+                            category = qsTr("NOCTURNAS(BUHOS)");
                             break;
                         default:
-                            category = qsTr("Other");
+                            category = qsTr("OTROS");
                         }
-                        namelistModel.append({"lineNumber": r1.rows.item(i).label,
-                                                 "lineName": r1.rows.item(i).name,
+                        namelistModel.append({"lineName": r1.rows.item(i).name,
+                                                 "lineNumber": r1.rows.item(i).label,
                                                  "lineColor": r1.rows.item(i).color,
                                                  "lineType": category,
                                                  "code": r1.rows.item(i).code
@@ -50,12 +44,12 @@ function getStopsData(line, stopsListModel){
     var output = []
     db.transaction(
                 function(tx){
-                    var query = 'SELECT name, label, color, head_name,head_number, tail_name, tail_number FROM lines WHERE code=?'
+                    var query = 'SELECT name, label, color, head_name, head_number, tail_name, tail_number FROM lines WHERE code=?'
                     var r1 = tx.executeSql(query,[line])
                     output = [r1.rows.item(0).name, r1.rows.item(0).label, r1.rows.item(0).color]
-//                    lineName.text = r1.rows.item(0).name;
-//                    lineLabel.text = r1.rows.item(0).label;
-//                    lineIcon.border.color = r1.rows.item(0).color;
+//--                    lineLabel.text = r1.rows.item(0).label;
+                    lineName.text = r1.rows.item(0).name;
+                    lineIcon.border.color = r1.rows.item(0).color;
                     section_names[0] = [r1.rows.item(0).head_number,r1.rows.item(0).head_name];
                     section_names[1] = [r1.rows.item(0).tail_number,r1.rows.item(0).tail_name];
                 }
@@ -96,3 +90,30 @@ function getStopsData(line, stopsListModel){
                 )
     return output
 }
+
+function addUsual(code,name){
+ console.log("Adding "+code+" to usual stops")
+ var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
+ db.transaction(
+   function(tx){
+       var r1 = tx.executeSql('INSERT INTO usual_nodes VALUES (NULL,?,?,NULL)',[code,"->"+name])
+   }
+   )
+ isUsual(code);
+ }
+ function isUsual(code){
+ var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
+ db.transaction(
+   function(tx){
+       var r1 = tx.executeSql('SELECT id FROM usual_nodes WHERE code=?',[code])
+       if (r1.rows.length > 0){
+           favIcon.visible = true
+           console.log("Stop "+code+" is a usual stops")
+       }
+       else{
+           favIcon.visible = false
+           console.log("Stop "+code+" is not a usual stops")
+       }
+   }
+   )
+ }

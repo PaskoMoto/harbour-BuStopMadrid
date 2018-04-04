@@ -1,9 +1,13 @@
 #! vevn/bin/python
-from suds.client import Client
+from pyemtmad import Wrapper
 import uuid
 import os
 import sqlite3
 from datetime import datetime
+
+dd = datetime.today().day
+mm = datetime.today().month
+yy = datetime.today().year
 
 class internal_db:
     def __init__(self, db_path='../db/7e3f3d4078aa797ff831e9bc3fbbfe46.sqlite'):
@@ -48,92 +52,115 @@ class internal_db:
         return 1
     
     def __tussam_connect__(self):
-        self.tussam = Client("http://www.infobustussam.com:9005/InfoTusWS/services/InfoTus?wsdl", username="infotus-usermobile", password="2infotus0user1mobile2", headers={"deviceid":str(uuid.uuid4())})
+        self.tussam = Wrapper('WEB.SERV.fernando@cardelina.linkpc.net','6B4AE029-2E12-4C56-BE41-BA608A18A953')
         return 1
         
     def __update_tussam_lines__(self):
         # Download lines from API to DB
-        lines = self.tussam.service.getLineas()[0][0]
+        lines = self.tussam.bus.get_list_lines(day=dd,month=mm,year=yy,lines=[])[1]
+        color = "#aaaaaa"
+        category = 'Red Diurna Convencional'
         for line in lines:
             if line not in ["", None, "None", []]:
-                self.db.execute("SELECT * FROM lines WHERE label = ?",(line['label'],))
+                self.db.execute("SELECT * FROM lines WHERE code = ?", (int(line.line),) )
                 if self.db.fetchone() == None:
-                    category = '2regular'
-                    if line['label']  in ['C1', 'C2', 'C3', 'C4', 'C5', 'C6A']:
-                        category = '0circular'
-                    elif line['label'] in ['B3','B4','EA','52','53']:
-                        category = '4especial'
-                    elif line['label'] in ['T1']:
-                        category = '3tranvia'
-                    elif line['label'] in ['01','02','03','05','06']:
-                        category = '1largo_recorrido'
-                    elif line['label'] in ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8']:
-                        category = '5nocturno'
-                    if line['nombre'] in ['38A', 'C6B']:
-                        line_name = line['nombre'][0-1]
-                        data = (int(line['macro']),line_name,line['label'],line['color'],category)
-                    data = (int(line['macro']),line['nombre'],line['label'],line['color'],category)
-                    if type(line['secciones'][0]) == list:
-                        for seccion in line['secciones'][0]:
-                            data = data + (seccion['nombreSeccion'],int(seccion['numeroSeccion']), seccion['horaInicio'],seccion['horaFin'],)
+                    if str(line.group) in ['110','120','155','160','171']:
+                        category = 'Red Diurna Convencional'
+                        color = "#f54129"
+                    elif str(line.group) in ['210']:
+                        category = 'Red Universitaria'
+                        color = "#000d6f"
+                    elif str(line.group) in ['320']:
+                        category = 'Red Nocturna'
+                        color = "#742929"
+                    elif str(line.group) in ['410','420']:
+                        category = 'Líneas Aeropuerto'
+                        color = "#84c6e3"
                     else:
-                        seccion = line['secciones'][0]
-                        data = data + (seccion['nombreSeccion'],int(seccion['numeroSeccion']), seccion['horaInicio'],seccion['horaFin'],
-                                       None, None, None, None,)
-                    #print("Adding line",line['label'])
-                    self.db.execute('INSERT INTO lines VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',data)
+                        category = '---------------'
+                    line.header_a = line.header_a.replace("  ","")
+                    line.header_b = line.header_b.replace("  ","")
+                    data = (line.line,line.header_a+"-- "+line.header_b,line.label,color,category)
+                    data = data + (line.header_a, 1, line.start_date, line.end_date)
+                    data = data + (line.header_b, 2, line.start_date, line.end_date)
+                    self.db.execute('INSERT INTO lines VALUES (?,upper(?),?,?,?,upper(?),?,?,?,upper(?),?,?,?)',data)
+
+        self.db.execute('UPDATE lines SET name=? where label=?',('CIRCULAR 1','C1'))
+        self.db.execute('UPDATE lines SET name=? where label=?',('CIRCULAR 2','C2'))
+
         if self.db_conn.commit():
             return 1
         else:
             return 0
-                
+
     def __update_tussam_nodes__(self):
         self.__tussam_connect__()
+
+#        routes = self.tussam.bus.get_route_lines(day=dd,month=mm,year=yy,lines=[])[1]
+#        for route in routes:
+#            if route not in ["", None, "None", []]:
+#                self.db.execute("SELECT * FROM nodes WHERE code = ?", (int(route.id),) )
+#                if self.db.fetchone() == None:
+#                    if route.distance_orig == 0:
+#                      if route.node_type == 'forward_stop':
+#                           self.db.execute('UPDATE lines SET head_number=? WHERE code=?',(1,route.line))
+#                      elif route.node_type == 'backward_stop':
+#                           self.db.execute('UPDATE lines SET tail_number=? WHERE code=?',(2,route.line))
+
+        nodes = self.tussam.bus.get_nodes_lines(nodes=[])[1]
+        for node in nodes:
+            if node not in ["", None, "None", []]:
+                self.db.execute("SELECT * FROM nodes WHERE code = ?", (int(node.id),) )
+                if self.db.fetchone() == None:
+                   lineinfo = ":"
+                   for line in node.lines:
+                       if line[1] == 'forward':
+                           lineinfo = lineinfo+str(line[0])+".2:"
+                       else:
+                           lineinfo = lineinfo+str(line[0])+".1:"
+                   data = (node.id, node.name, node.latitude, node.longitude, "667", lineinfo)
+                   self.db.execute('INSERT INTO nodes VALUES (?,upper(?),?,?,?,?)',data)
+
+        self.db_conn.commit()
+
         self.db.execute("SELECT label, code, head_number, tail_number FROM lines")
         for line, code, head, tail in self.db.fetchall():
-            for section in [head,tail]:
+            raw_data = self.tussam.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[1]
+            if len(raw_data) > 0:
+
+                section = 1   # head-to-tail
                 if section != None:
                     node_list = []
                     distance_list = []
                     way = str(code)+"."+str(section)
-                    raw_data = self.tussam.service.getNodosSeccion(code,section)
-                    if len(raw_data) > 0:
-                        for remote_node in raw_data[0]:
-                            node_list.append(str(remote_node['codigoNodo']))
-                            distance_list.append(str(remote_node['distancia']))
-                            self.db.execute("SELECT * FROM nodes WHERE code = ?",(remote_node[0],))
-                            local_node = self.db.fetchone()
-                            if local_node != None:
-                                # Already existing node
-                                coincident_lines = local_node[-1].strip(":").split(":")
-                                if way not in coincident_lines:
-                                    coincident_lines.append(way)
-                                    #print("Existing node:", local_node)
-                                    #print("\tUpdating line_codes to:", coincident_lines)
-                                    self.db.execute('UPDATE nodes SET line_codes=? WHERE code=?',(":"+":".join(coincident_lines)+":",remote_node[0],))
-                                else:
-                                    #print("\tNothing to update.")
-                                    pass
-                            else:
-                                # New node
-                                stop_name = remote_node['descripcion']
-                                if '(' in stop_name and not ')' in stop_name:
-                                    if 'Castillo de Marcheni' in stop_name:
-                                        stop_name += 'lla)'
-                                    else:
-                                        stop_name += ')'
-                                data = (int(remote_node['codigoNodo']), stop_name, remote_node['posicion']['latitud'], remote_node['posicion']['longitud'], remote_node['posicion']['altura'], ":"+way+":")
-                                #print("Adding new node:", data,"\n")
-                                self.db.execute('INSERT INTO nodes VALUES (?,?,?,?,?,?)',data)
-                                pass
+                    for remot_node in raw_data:
+                         if remot_node.node_type == 'forward_stop':
+                              node_list.append(str(remot_node.id))
+                              distance_list.append(str(remot_node.distance_orig))
                     temp = (code, line, int(section),)
                     self.db.execute('SELECT nodes, distance FROM line_nodes WHERE line_code=? AND line_label=? AND section=?', temp)
                     local_data = self.db.fetchone()
                     if local_data == None or (node_list != "::" and distance_list != "::" and (local_data[0] == "::" or local_data[1] == "::")):
-                        data = (code, line, int(section), ":"+":".join(node_list)+":",":"+":".join(distance_list)+":",)
-                        #print("Adding data:", data)
-                        self.db.execute('INSERT INTO line_nodes VALUES (NULL,?,?,?,?,?)', data)
-                self.db_conn.commit()
+                                 data = (code, line, int(section), ":"+":".join(node_list)+":",":"+":".join(distance_list)+":",)
+                                 self.db.execute('INSERT INTO line_nodes VALUES (NULL,?,?,?,?,?)', data)
+
+                section = 2   # tail-to-head
+                if section != None:
+                    node_list = []
+                    distance_list = []
+                    way = str(code)+"."+str(section)
+                    for remote_node in raw_data:
+                         if remote_node.node_type == 'backward_stop':
+                              node_list.append(str(remote_node.id))
+                              distance_list.append(str(remote_node.distance_orig))
+                    temp = (code, line, int(section),)
+                    self.db.execute('SELECT nodes, distance FROM line_nodes WHERE line_code=? AND line_label=? AND section=?', temp)
+                    local_data = self.db.fetchone()
+                    if local_data == None or (node_list != "::" and distance_list != "::" and (local_data[0] == "::" or local_data[1] == "::")):
+                                 data = (code, line, int(section), ":"+":".join(node_list)+":",":"+":".join(distance_list)+":",)
+                                 self.db.execute('INSERT INTO line_nodes VALUES (NULL,?,?,?,?,?)', data)
+
+        self.db_conn.commit()
                         
     def __get_table_names__(self):
         x = self.db.execute("SELECT name FROM sqlite_master WHERE type='table';")

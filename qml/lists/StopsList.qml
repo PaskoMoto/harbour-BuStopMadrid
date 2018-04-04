@@ -81,34 +81,8 @@ SilicaListView{
             menu: ContextMenu {
                 MenuItem {
                     text: qsTr("Add to usual stops")
-                    onClicked: addUsual(stopNumber, stopName)
+                    onClicked: MyUtils.addUsual(stopNumber, stopName)
                 }
             }
-        }
-        function addUsual(code,name){
-        console.log("Adding "+code+" to usual stops")
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-          function(tx){
-              var r1 = tx.executeSql('INSERT INTO usual_nodes VALUES (NULL,?,?,NULL)',[code,"->"+name])
-          }
-          )
-        isUsual(code);
-        }
-        function isUsual(code){
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-          function(tx){
-              var r1 = tx.executeSql('SELECT id FROM usual_nodes WHERE code=?',[code])
-              if (r1.rows.length > 0){
-                  favIcon.visible = true
-                  console.log("Stop "+code+" is a usual stops")
-              }
-              else{
-                  favIcon.visible = false
-                  console.log("Stop "+code+" is not a usual stops")
-              }
-          }
-          )
         }
     } 

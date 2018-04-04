@@ -79,7 +79,7 @@ Page {
             }
             PageHeader{
                 id: header
-                title: qsTr("BuStop Sevilla")
+                title: qsTr("BuStop Madrid")
             }
             Item{
                 id: busStopBlock

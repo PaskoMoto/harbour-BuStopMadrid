@@ -164,7 +164,7 @@ Page {
             anchorPoint.y: currentPositionIcon.height/2
         }
         Component.onCompleted: {
-            myMap.center = QtPositioning.coordinate(37.37153059279899, -5.957312423107226);
+            myMap.center = QtPositioning.coordinate(40.4166173, -3.704439);
             myMap.zoomLevel = 12;
         }
         MouseArea{
@@ -207,14 +207,16 @@ Page {
         onTappedDataChanged: {
             if (tappedData.length > 0){
                 console.log("tappedData lenght: "+tappedData.length)
+                console.log("tappedData: "+tappedData)
                 MyUtils.getStopsData(tappedData[4], myStopList)
                 lineNumber.text = tappedData[0]
                 lineIcon.border.color = tappedData[2]
                 lineName.text = tappedData[1]
+
                 myMap.state = "map open"
                 console.log("Number of stops loaded: "+myStopList.count)
-                myMap.center.latitude = 37.3715306
-                myMap.center.longitude = -5.9573124
+                myMap.center.latitude = 40.4166173
+                myMap.center.longitude = -3.704439
                 myMap.zoomLevel = 12;
                 console.log("Center: "+myMap.center.latitude+ " - "+ myMap.center.longitude + " zoom level: "+ myMap.zoomLevel)
             }

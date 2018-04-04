@@ -152,8 +152,8 @@ Esta aplicación depende de librerías suds para un uso sencillo de los servicio
     </message>
     <message>
         <location filename="../qml/pages/FrontPage.qml" line="82"/>
-        <source>BuStop Sevilla</source>
-        <translation>BuStop Sevilla</translation>
+        <source>BuStop Madrid</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/FrontPage.qml" line="101"/>
@@ -301,15 +301,23 @@ Esta aplicación depende de librerías suds para un uso sencillo de los servicio
     </message>
     <message>
         <location filename="../qml/pages/StopPage.qml" line="311"/>
-        <location filename="../qml/pages/StopPage.qml" line="348"/>
         <source> minutes</source>
         <translation> minutos</translation>
     </message>
     <message>
         <location filename="../qml/pages/StopPage.qml" line="311"/>
-        <location filename="../qml/pages/StopPage.qml" line="348"/>
         <source> meters</source>
         <translation> metros</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/StopPage.qml" line="348"/>
+        <source>SENTIDO: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/StopPage.qml" line="348"/>
+        <source> BUS_ID: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -353,38 +361,28 @@ Esta aplicación depende de librerías suds para un uso sencillo de los servicio
     <name>utils</name>
     <message>
         <location filename="../qml/lists/utils.js" line="13"/>
-        <source>Circular</source>
-        <translation>Circular</translation>
+        <source>DIURNAS</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/lists/utils.js" line="16"/>
-        <source>Long Line</source>
-        <translation>Línea larga</translation>
+        <source>UNIVERSITARIAS</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/lists/utils.js" line="19"/>
-        <source>Regular</source>
-        <translation>Normal</translation>
+        <source>LINEAS AEROPUERTO</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/lists/utils.js" line="22"/>
-        <source>Trolley Car</source>
-        <translation>Tranvía</translation>
+        <source>NOCTURNAS(BUHOS)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/lists/utils.js" line="25"/>
-        <source>Special</source>
-        <translation>Especial</translation>
-    </message>
-    <message>
-        <location filename="../qml/lists/utils.js" line="28"/>
-        <source>Nighttime</source>
-        <translation>Nocturno</translation>
-    </message>
-    <message>
-        <location filename="../qml/lists/utils.js" line="31"/>
-        <source>Other</source>
-        <translation>Otro</translation>
+        <source>OTROS</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
