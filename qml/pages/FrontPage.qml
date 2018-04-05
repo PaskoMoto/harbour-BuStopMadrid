@@ -74,7 +74,7 @@ Page {
                 }
                 MenuItem{
                     text: qsTr("Official rates (website)")
-                    onClicked: Qt.openUrlExternally("http://www.tussam.es/index.php?id=192")
+                    onClicked: Qt.openUrlExternally("http://www.emtmadrid.es/ViajarenBus/Titulosytarifas")
                 }
             }
             PageHeader{
@@ -174,11 +174,11 @@ Page {
                     icon: "image://theme/icon-l-document"
                     move2: "LinesPage.qml"
                 }
-                ListElement{
+/*                ListElement{
                     title: qsTr("Check card balance")
                     icon: "image://theme/icon-l-mobile-network"
                     move2: "CardBalancePage.qml"
-                }
+                } */
             }
             delegate: BackgroundItem {
                 height: mainGrid.cellHeight

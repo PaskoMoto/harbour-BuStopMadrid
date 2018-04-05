@@ -10,17 +10,16 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = harbour-bustopsevilla
+TARGET = harbour-bustopmadrid
 
 CONFIG += sailfishapp
 
 SOURCES += \
-    src/harbour-bustopsevilla.cpp
+    src/harbour-bustopmadrid.cpp
 
-OTHER_FILES += qml/harbour-bustopsevilla.qml \
+OTHER_FILES += \
     qml/cover/CoverPage.qml \
-    rpm/harbour-bustopsevilla.spec \
-    rpm/harbour-bustopsevilla.yaml \
+    rpm/harbour-bustopmadrid.yaml \
     translations/*.ts
     db/data.db
 
@@ -35,7 +34,7 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += \
-    translations/harbour-bustopsevilla-es.ts
+    translations/harbour-bustopmadrid-es.ts
 
 database.files = db
 database.path = /usr/share/$${TARGET}
@@ -108,10 +107,10 @@ DISTFILES += \
     qml/pages/StopPage.qml \
     qml/pages/BSCodePage.qml \
     qml/api.py \
-    icons/108x108/harbour-BuStopSevilla.png \
-    icons/128x128/harbour-BuStopSevilla.png \
-    icons/256x256/harbour-BuStopSevilla.png \
-    icons/86x86/harbour-BuStopSevilla.png \
+    icons/108x108/harbour-BuStopMadrid.png \
+    icons/128x128/harbour-BuStopMadrid.png \
+    icons/256x256/harbour-BuStopMadrid.png \
+    icons/86x86/harbour-BuStopMadrid.png \
     qml/suds/bindings/__init__.py \
     qml/suds/bindings/binding.py \
     qml/suds/bindings/document.py \
@@ -169,16 +168,18 @@ DISTFILES += \
     qml/suds/version.py \
     qml/suds/wsdl.py \
     qml/suds/wsse.py \
-    harbour-bustopsevilla.desktop \
-    harbour-bustopsevilla.pro.user \
-    harbour-bustopsevilla.pro.user.edb680b \
+    harbour-bustopmadrid.pro.user \
+    harbour-bustopmadrid.pro.user.edb680b \
     qml/cover/CoverStopPage.qml \
     qml/utils.py \
     db/data.db \
     qml/pages/UsualStopsPage.qml \
-    rpm/harbour-bustopsevilla.changes \
     qml/pages/StopsMap.qml \
-    qml/pages/Settings.qml
+    qml/pages/Settings.qml \
+    qml/harbour-bustopmadrid.qml \
+    rpm/harbour-bustopmadrid.changes \
+    rpm/harbour-bustopmadrid.spec \
+    harbour-bustopmadrid.desktop
 
 RESOURCES += \
     resources.qrc

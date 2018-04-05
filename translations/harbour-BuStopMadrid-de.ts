@@ -44,7 +44,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BuStopSevilla is an unofficial app to get arrival times from TUSSAM bus service of Seville city. Arrival times are just an estimation and depends on TUSSAM servers. 
+        <source>BuStopMadrid is an unofficial app to get arrival times from TUSSAM bus service of Seville city. Arrival times are just an estimation and depends on TUSSAM servers. 
 This app depends on suds libs for easy use of SOAP web services.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -82,7 +82,7 @@ This app depends on suds libs for easy use of SOAP web services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BuStop Sevilla</source>
+        <source>BuStop Madrid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

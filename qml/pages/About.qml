@@ -29,7 +29,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeExtraSmall
-                text:qsTr("BuStopSevilla is an unofficial app to get arrival times from TUSSAM bus service of Seville city. Arrival times are just an estimation and depends on TUSSAM servers. \nThis app depends on suds libs for easy use of SOAP web services.")
+                text:qsTr("BuStopMadrid is an unofficial app to get arrival times from EMT bus service in Madrid. Arrival times are just an estimation and depends on EMT servers. \nThis app depends on pyemtmad libs for easy use of SOAP web services.")
             }
             Label{
                 text: qsTr("Author")
@@ -40,7 +40,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeExtraSmall
-                text:"J. Pablo Navarro"
+                text:"Pasko based on an app from J. Pablo Navarro"
             }
             Label{
                 text: qsTr("Icon")
@@ -73,7 +73,7 @@ Page {
                 text: qsTr("See it in Github")
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
-                    Qt.openUrlExternally("https://github.com/helfio/harbour-BuStopSevilla")
+                    Qt.openUrlExternally("https://github.com/PaskoMoto/harbour-BuStopMadrid")
                 }
             }
             Label{
@@ -98,7 +98,7 @@ Page {
                 text:qsTr("Make a donation")
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
-                    Qt.openUrlExternally("https://www.paypal.me/JuanPabloN")
+                    Qt.openUrlExternally("https://www.paypal.me/PaskoMoto")
                 }
             }
             Item{

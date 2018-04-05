@@ -32,6 +32,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtGraphicalEffects 1.0
 import QtQuick.LocalStorage 2.0
+import "utils.js" as MyUtils
 
 Page {
     id:stopPage
@@ -42,12 +43,12 @@ Page {
         PullDownMenu{
             MenuItem{
                 text: qsTr("Add to usual stops")
-                onClicked: addUsual(current_stop,subHeader.text)
+                onClicked: MyUtils.addUsual(current_stop,subHeader.text)
                 visible: !favIcon.visible
             }
             MenuItem{
                 text: qsTr("Remove from usual stops")
-                onClicked: removeUsual(current_stop)
+                onClicked: MyUtils.removeUsualStop(current_stop)
                 visible: favIcon.visible
             }
             MenuItem{
@@ -59,7 +60,7 @@ Page {
         ViewPlaceholder {
             id: loadingIndicator
             enabled: if (linesList.count === 0){
-                         populateStopData(rootPage.var_tiempos_llegada, current_stop);
+                         MyUtils.populateStopData(rootPage.var_tiempos_llegada, current_stop);
                          return true
                      }
                      else{
@@ -345,7 +346,7 @@ Page {
                         }
                         font.pixelSize: Theme.fontSizeExtraSmall
                         color: Theme.secondaryColor
-                        text: qsTr("SENTIDO: ")+second_bus_time+", "+qsTr(" BUS_ID: ")+second_bus_distance
+                        text: qsTr("Sentido: ")+second_bus_time+", "+qsTr("BusId: ")+second_bus_distance
                     }
                     Rectangle{
                         visible: testing_rectangles
@@ -372,92 +373,4 @@ Page {
         rootPage.current_page = ['StopPage',current_stop]
     }
 
-    function populateStopData(mylist, stop_code) {
-        console.log("mylist "+ mylist)
-        isUsual(stop_code);
-        if (mylist){
-            var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-            var raw_line_codes = ""
-            var section_names = {}
-            var line_colors = {}
-            db.transaction(
-                        function(tx){
-                            var query = 'SELECT name, line_codes FROM nodes WHERE code=?'
-                            var r1 = tx.executeSql(query,[stop_code])
-                            subHeader.text = r1.rows.item(0).name
-                            raw_line_codes = r1.rows.item(0).line_codes
-                        }
-                        )
-            db.transaction(
-                        function(tx){
-                            var tmp_line_codes = raw_line_codes.replace(/:/g," ")
-                            var line_codes = tmp_line_codes.trim().split(" ")
-                            for (var i = 0; i < line_codes.length; i++){
-                                var line = line_codes[i].split(".")[0]
-                                var section = line_codes[i].split(".")[1]
-                                var query = 'SELECT label, color, head_name, head_number, tail_name, tail_number FROM lines WHERE code=? AND (head_number=? OR tail_number=?)'
-                                var r1 = tx.executeSql(query,[line, section, section])
-                                for (var j = 0; j < r1.rows.length; j++){
-                                    line_colors[r1.rows.item(j).label] = r1.rows.item(j).color
-                                    if (r1.rows.item(j).head_number - section === 0){
-                                        section_names[r1.rows.item(j).label] = r1.rows.item(j).head_name
-                                    }
-                                    else{
-                                        section_names[r1.rows.item(j).label] = r1.rows.item(j).tail_name
-                                    }
-                                }
-                            }
-                        }
-                        )
-            for(var i = 0; i < mylist.length; i++){
-                stopDataModel.append({
-                                         "line": mylist[i][0],
-                                         "first_bus_time": mylist[i][1],
-                                         "first_bus_distance": mylist[i][2],
-                                         "second_bus_time": mylist[i][3],
-                                         "second_bus_distance": mylist[i][4],
-                                         "section_name": section_names[String(mylist[i][0])],
-                                         "line_color": line_colors[String(mylist[i][0])]
-                                     })
-            }
-            var now = new Date()
-            lastRefresh.text = now.getHours()+":"+('0'+now.getMinutes()).slice(-2)
-        }
-    }
-    function addUsual(code,name){
-        console.log("Adding "+code+" to usual stops")
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-                    function(tx){
-                        var r1 = tx.executeSql('INSERT INTO usual_nodes VALUES (NULL,?,?,NULL)',[code,"->"+name])
-                    }
-                    )
-        isUsual(code);
-    }
-    function removeUsual(code){
-        console.log("Removing "+code+" from usual stops")
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-                    function(tx){
-                        var r1 = tx.executeSql('DELETE FROM usual_nodes WHERE code=?',[code])
-                    }
-                    )
-        isUsual(code);
-    }
-    function isUsual(code){
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-                    function(tx){
-                        var r1 = tx.executeSql('SELECT id FROM usual_nodes WHERE code=?',[code])
-                        if (r1.rows.length > 0){
-                            favIcon.visible = true
-                            console.log("Stop "+code+" is a usual stops")
-                        }
-                        else{
-                            favIcon.visible = false
-                            console.log("Stop "+code+" is not a usual stops")
-                        }
-                    }
-                    )
-    }
 }

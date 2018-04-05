@@ -31,6 +31,7 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
+import "utils.js" as MyUtils
 
 Page{
     property bool testing_rectangles: false
@@ -114,57 +115,17 @@ Page{
                 color: "transparent"
                 border.color: "green"
             }
-            onClicked: pushAskButton(code);
+            onClicked: MyUtils.pushAskButton(code);
             menu: ContextMenu {
                 MenuItem {
                     text: qsTr("Remove")
-                    onClicked: removeUsual(entry_id)
+                    onClicked: MyUtils.removeUsual(entry_id)
                 }
             }
         }
     }
     Component.onCompleted: {
         rootPage.current_page = ['UsualStopsPage']
-        getStopsData();
-    }
-    function getStopsData(){
-        stopDataModel.clear();
-        console.log("Asking usual stops")
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-                    function(tx){
-                        var r1 = tx.executeSql('SELECT code FROM usual_nodes')
-                        for(var i = 0; i < r1.rows.length; i++){
-                            var code = r1.rows.item(i).code
-                            var query = 'SELECT usual_nodes.custom_label, usual_nodes.id, nodes.name FROM usual_nodes, nodes WHERE usual_nodes.code=? and nodes.code=?'
-                            var r2 = tx.executeSql(query,[code,code])
-                            console.log("Adding id: "+r2.rows.item(0).id)
-                            stopDataModel.append({
-                                                     "code": String(code),
-                                                     "name": r2.rows.item(0).name,
-                                                     "custom_label": r2.rows.item(0).custom_label,
-                                                     "entry_id": r2.rows.item(0).id
-//                                                     "number_of_links": links.length,
-//                                                     "links": links
-                                                 })
-                            console.log("Names: "+r2.rows.item(0).name)
-                            console.log("Custom label: "+r2.rows.item(0).custom_label)
-                        }
-                    }
-                    )
-    }
-    function pushAskButton(code){
-        pythonMain.ask(code);
-        pageStack.replace("StopPage.qml", {current_stop: code})
-    }
-    function removeUsual(id){
-        console.log("Removing "+id+" from usual stops")
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
-        db.transaction(
-                    function(tx){
-                        var r1 = tx.executeSql('DELETE FROM usual_nodes WHERE id=?',[id])
-                    }
-                    )
-        getStopsData();
+        MyUtils.getUsualStopsData();
     }
 }

@@ -109,7 +109,7 @@ Page {
     }
     function get_last_update(){
         console.log("Getting last DB update date.")
-        var db = LocalStorage.openDatabaseSync("bustopsevillaDB","1.0","Internal data for hitmemap! app.",1000000)
+        var db = LocalStorage.openDatabaseSync("bustopmadridDB","1.0","Internal data for hitmemap! app.",1000000)
         db.transaction(
                     function(tx){
                         var r1 = tx.executeSql("SELECT data FROM metadata WHERE field='last_db_update' ")

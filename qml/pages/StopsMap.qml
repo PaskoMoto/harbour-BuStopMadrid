@@ -4,8 +4,7 @@ import QtPositioning 5.2
 import Sailfish.Silica 1.0
 import QtGraphicalEffects 1.0
 import QtQuick.LocalStorage 2.0
-import "../lists"
-import "../lists/utils.js" as MyUtils
+import "utils.js" as MyUtils
 
 Page {
     id: stopsMapPage
@@ -164,7 +163,7 @@ Page {
             anchorPoint.y: currentPositionIcon.height/2
         }
         Component.onCompleted: {
-            myMap.center = QtPositioning.coordinate(40.4166173, -3.704439);
+            myMap.center = QtPositioning.coordinate(40.4166161,-3.705977);
             myMap.zoomLevel = 12;
         }
         MouseArea{
@@ -207,16 +206,14 @@ Page {
         onTappedDataChanged: {
             if (tappedData.length > 0){
                 console.log("tappedData lenght: "+tappedData.length)
-                console.log("tappedData: "+tappedData)
                 MyUtils.getStopsData(tappedData[4], myStopList)
                 lineNumber.text = tappedData[0]
                 lineIcon.border.color = tappedData[2]
                 lineName.text = tappedData[1]
-
                 myMap.state = "map open"
                 console.log("Number of stops loaded: "+myStopList.count)
-                myMap.center.latitude = 40.4166173
-                myMap.center.longitude = -3.704439
+                myMap.center.latitude = 40.4166161
+                myMap.center.longitude = -3.705977
                 myMap.zoomLevel = 12;
                 console.log("Center: "+myMap.center.latitude+ " - "+ myMap.center.longitude + " zoom level: "+ myMap.zoomLevel)
             }

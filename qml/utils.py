@@ -6,7 +6,7 @@ from database import internal_db
 
 
 def checkDB():
-    source = '/usr/share/harbour-bustopsevilla/db'
+    source = '/usr/share/harbour-bustopmadrid/db'
     db_location = __get_db_location__()
     ini_location = __get_ini_location__()
     if os.path.isfile(ini_location) and os.path.isfile(db_location):
@@ -24,14 +24,14 @@ def hash(my_string):
     return str(m.hexdigest())
 
 def __get_db_location__():
-    path = os.path.join(os.getenv("HOME"),".local/share/harbour-bustopsevilla/harbour-bustopsevilla/QML/OfflineStorage/Databases/")
-    db_name = 'bustopsevillaDB'
+    path = os.path.join(os.getenv("HOME"),".local/share/harbour-bustopmadrid/harbour-bustopmadrid/QML/OfflineStorage/Databases/")
+    db_name = 'bustopmadridDB'
     db_hash = hash(db_name)
     return os.path.join(path,db_hash+".sqlite")
 
 def __get_ini_location__():
-    path = os.path.join(os.getenv("HOME"),".local/share/harbour-bustopsevilla/harbour-bustopsevilla/QML/OfflineStorage/Databases/")
-    db_name = 'bustopsevillaDB'
+    path = os.path.join(os.getenv("HOME"),".local/share/harbour-bustopmadrid/harbour-bustopmadrid/QML/OfflineStorage/Databases/")
+    db_name = 'bustopmadridDB'
     db_hash = hash(db_name)
     return os.path.join(path,db_hash+".ini")
 

@@ -14,7 +14,7 @@ class internal_db:
         self.db_path = db_path
         self.db = self.__init_db__()
         self.__create_tables_db__()
-        self.__tussam_connect__()
+        self.__emtmad_connect__()
         self.data_tables = ['lines', 'nodes', 'line_nodes']
     
     def __init_db__(self):
@@ -51,13 +51,13 @@ class internal_db:
         
         return 1
     
-    def __tussam_connect__(self):
-        self.tussam = Wrapper('WEB.SERV.fernando@cardelina.linkpc.net','6B4AE029-2E12-4C56-BE41-BA608A18A953')
+    def __emtmad_connect__(self):
+        self.emtmad = Wrapper('WEB.SERV.fernando@cardelina.linkpc.net','6B4AE029-2E12-4C56-BE41-BA608A18A953')
         return 1
         
-    def __update_tussam_lines__(self):
+    def __update_emtmad_lines__(self):
         # Download lines from API to DB
-        lines = self.tussam.bus.get_list_lines(day=dd,month=mm,year=yy,lines=[])[1]
+        lines = self.emtmad.bus.get_list_lines(day=dd,month=mm,year=yy,lines=[])[1]
         color = "#aaaaaa"
         category = 'Red Diurna Convencional'
         for line in lines:
@@ -93,21 +93,10 @@ class internal_db:
         else:
             return 0
 
-    def __update_tussam_nodes__(self):
-        self.__tussam_connect__()
+    def __update_emtmad_nodes__(self):
+        self.__emtmad_connect__()
 
-#        routes = self.tussam.bus.get_route_lines(day=dd,month=mm,year=yy,lines=[])[1]
-#        for route in routes:
-#            if route not in ["", None, "None", []]:
-#                self.db.execute("SELECT * FROM nodes WHERE code = ?", (int(route.id),) )
-#                if self.db.fetchone() == None:
-#                    if route.distance_orig == 0:
-#                      if route.node_type == 'forward_stop':
-#                           self.db.execute('UPDATE lines SET head_number=? WHERE code=?',(1,route.line))
-#                      elif route.node_type == 'backward_stop':
-#                           self.db.execute('UPDATE lines SET tail_number=? WHERE code=?',(2,route.line))
-
-        nodes = self.tussam.bus.get_nodes_lines(nodes=[])[1]
+        nodes = self.emtmad.bus.get_nodes_lines(nodes=[])[1]
         for node in nodes:
             if node not in ["", None, "None", []]:
                 self.db.execute("SELECT * FROM nodes WHERE code = ?", (int(node.id),) )
@@ -121,11 +110,9 @@ class internal_db:
                    data = (node.id, node.name, node.latitude, node.longitude, "667", lineinfo)
                    self.db.execute('INSERT INTO nodes VALUES (?,upper(?),?,?,?,?)',data)
 
-        self.db_conn.commit()
-
         self.db.execute("SELECT label, code, head_number, tail_number FROM lines")
         for line, code, head, tail in self.db.fetchall():
-            raw_data = self.tussam.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[1]
+            raw_data = self.emtmad.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[1]
             if len(raw_data) > 0:
 
                 section = 1   # head-to-tail
@@ -186,8 +173,8 @@ class internal_db:
     def update_data_tables(self, wipe = False):
         if wipe:
             self.__wipe_data_tables__()
-        self.__update_tussam_lines__()
-        self.__update_tussam_nodes__()
+        self.__update_emtmad_lines__()
+        self.__update_emtmad_nodes__()
         self.__update_modification_date__()
         
     def __update_modification_date__(self):

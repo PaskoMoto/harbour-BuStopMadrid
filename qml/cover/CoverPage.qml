@@ -35,7 +35,7 @@ CoverBackground {
     Label {
         id: label
         anchors.centerIn: parent
-        text: "BuStopMadrid"
+        text: "BuStop Madrid"
     }
 
     CoverActionList {
