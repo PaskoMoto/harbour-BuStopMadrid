@@ -36,6 +36,11 @@ function populateStopData(mylist, stop_code) {
                     }
                     )
         for(var i = 0; i < mylist.length; i++){
+           if (mylist[i][0] === "XX"){
+               section_names[String(mylist[i][0])] = "NO SERVICE"
+           }
+        }
+        for(var i = 0; i < mylist.length; i++){
             stopDataModel.append({
                                      "line": mylist[i][0],
                                      "first_bus_time": mylist[i][1],

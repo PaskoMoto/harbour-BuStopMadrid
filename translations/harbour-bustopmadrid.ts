@@ -354,27 +354,27 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
 <context>
     <name>utils</name>
     <message>
-        <location filename="../qml/pages/utils.js" line="65"/>
+        <location filename="../qml/pages/utils.js" line="70"/>
         <source>Red Diurna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/utils.js" line="68"/>
+        <location filename="../qml/pages/utils.js" line="73"/>
         <source>Red Universitaria</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/utils.js" line="71"/>
+        <location filename="../qml/pages/utils.js" line="76"/>
         <source>Aeropuerto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/utils.js" line="74"/>
+        <location filename="../qml/pages/utils.js" line="79"/>
         <source>Red Nocturna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/utils.js" line="77"/>
+        <location filename="../qml/pages/utils.js" line="82"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>

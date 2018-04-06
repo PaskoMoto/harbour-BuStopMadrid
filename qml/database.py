@@ -52,7 +52,7 @@ class internal_db:
         return 1
     
     def __emtmad_connect__(self):
-        self.emtmad = Wrapper('WEB.SERV.fernando@cardelina.linkpc.net','6B4AE029-2E12-4C56-BE41-BA608A18A953')
+        self.emtmad = Wrapper('WEB.SERV.vendofalco@gmail.com','25C3A749-08E3-45E0-B821-9E8EE8D08A09')
         return 1
         
     def __update_emtmad_lines__(self):
