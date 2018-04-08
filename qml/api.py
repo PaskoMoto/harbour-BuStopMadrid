@@ -13,16 +13,46 @@ def getTiemposLlegada(parada = 154):
         times = result[1]
         times.sort(key=lambda time: time.line_id)
         output = []
-        for time in times:
-            line = [time.line_id]
-            if time.time_left != 999999:
-                 line.append(str(round(time.time_left/60,)))
+
+# First Item
+
+        line = [times[0].line_id]
+        if times[0].time_left != 999999:
+             line.append(str(round(times[0].time_left/60,)))
+        else:
+             line.append(" >20 ")
+        line.append(str(abs(times[0].distance)))
+#        output.append(line)
+
+# Remaining Items
+
+        for item in range(1 , len(times) ):
+            if times[item].line_id == times[item-1].line_id:
+                if times[item].time_left != 999999:
+                     line.append(str(round(times[item].time_left/60,)))
+                else:
+                     line.append(" >20 ")
+                line.append(str(abs(times[item].distance)))
+                output.append(line)
+                line = []
             else:
-                 line.append(" >20 ")
-            line.append(str(abs(time.distance)))
-            line.append(str(time.destination))
-            line.append(str(time.bus_id))
-            output.append(line)
+                 line.append(times[item].line_id)
+                 if times[item].time_left != 999999:
+                      line.append(str(round(times[item].time_left/60,)))
+                 else:
+                      line.append(" >20 ")
+                 line.append(str(abs(times[item].distance)))
+
+#        for time in times:
+#            line = [time.line_id]
+#            if time.time_left != 999999:
+#                 line.append(str(round(time.time_left/60,)))
+#            else:
+#                 line.append(" >20 ")
+#            line.append(str(abs(time.distance)))
+#            line.append(str(time.destination))
+#            line.append(str(time.bus_id))
+
     else:
         output = [["XX"," ?? ","??","NO SERVICE","??"]]
     pyotherside.send('TiemposLlegada',output)

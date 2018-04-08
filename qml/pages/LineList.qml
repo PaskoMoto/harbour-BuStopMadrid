@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 import QtQuick.LocalStorage 2.0
 
 SilicaListView{
+    property int workingMode: 1
     property var tappedData: []
         spacing: 0
         header: PageHeader{
@@ -71,7 +72,22 @@ SilicaListView{
                 truncationMode: TruncationMode.Fade
                 width: parent.width*0.75
             }
-            onClicked: pageStack.push("StopsPage.qml", {theLine: code, theColor: lineColor})
+            onClicked:{
+                console.log("Tapped on line code "+code);
+                     if (workingMode == 1){
+                     // Regular working mode. Full page moves to the new page
+                     pageStack.push("StopsPage.qml", {theLine: code, theColor: lineColor})
+                     }
+                     else if (workingMode == 2){
+                                if (code != -1){
+                                      tappedData = [lineNumber, lineName, lineColor, lineType, code]
+                                      // Does nothing. Just make use of theLine and theColor parameters.
+                                  }
+                                else{
+                                      console.log("Looking for near stops")
+                                }
+                     }
+            }
         }
-    }
+}
 

@@ -346,7 +346,7 @@ Page {
                         }
                         font.pixelSize: Theme.fontSizeExtraSmall
                         color: Theme.secondaryColor
-                        text: qsTr("Sentido: ")+second_bus_time+", "+qsTr("BusId: ")+second_bus_distance
+                        text: second_bus_time+qsTr(" minutes")+", "+second_bus_distance+qsTr(" meters")
                     }
                     Rectangle{
                         visible: testing_rectangles

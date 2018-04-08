@@ -206,7 +206,7 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
 <context>
     <name>LineList</name>
     <message>
-        <location filename="../qml/pages/LineList.qml" line="9"/>
+        <location filename="../qml/pages/LineList.qml" line="10"/>
         <source>Lines</source>
         <translation type="unfinished">Líneas</translation>
     </message>
@@ -303,23 +303,15 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
     </message>
     <message>
         <location filename="../qml/pages/StopPage.qml" line="312"/>
+        <location filename="../qml/pages/StopPage.qml" line="349"/>
         <source> minutes</source>
         <translation> minutos</translation>
     </message>
     <message>
         <location filename="../qml/pages/StopPage.qml" line="312"/>
+        <location filename="../qml/pages/StopPage.qml" line="349"/>
         <source> meters</source>
         <translation> metros</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/StopPage.qml" line="349"/>
-        <source>Sentido: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/StopPage.qml" line="349"/>
-        <source>BusId: </source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
