@@ -196,9 +196,17 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
     </message>
 </context>
 <context>
+    <name>LineDetails</name>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="7"/>
+        <source>To be implemented!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LineList</name>
     <message>
-        <location filename="../qml/pages/LineList.qml" line="10"/>
+        <location filename="../qml/pages/LineList.qml" line="9"/>
         <source>Lines</source>
         <translation type="unfinished"></translation>
     </message>
@@ -317,7 +325,7 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
 <context>
     <name>StopsList</name>
     <message>
-        <location filename="../qml/pages/StopsList.qml" line="83"/>
+        <location filename="../qml/pages/StopsList.qml" line="82"/>
         <source>Add to usual stops</source>
         <translation type="unfinished"></translation>
     </message>
@@ -327,6 +335,14 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
     <message>
         <location filename="../qml/pages/StopsMap.qml" line="62"/>
         <source>Please, select a line</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StopsPage</name>
+    <message>
+        <location filename="../qml/pages/StopsPage.qml" line="44"/>
+        <source>Show Line Details</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

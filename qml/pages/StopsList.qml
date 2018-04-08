@@ -60,7 +60,6 @@ SilicaListView{
                 font.pixelSize: Theme.fontSizeMedium
                 font.bold: true
             }
-
             Label{
                 anchors{
                     verticalCenter: parent.verticalCenter
@@ -76,7 +75,7 @@ SilicaListView{
             onClicked: {
                 console.log("Clic on bus stop "+stopNumber)
                 pythonMain.ask(stopNumber);
-                pageStack.replaceAbove(pageStack.previousPage(pageStack.previousPage()),"../pages/StopPage.qml", {current_stop: stopNumber})
+                pageStack.push("StopPage.qml", {current_stop: stopNumber})
             }
             menu: ContextMenu {
                 MenuItem {

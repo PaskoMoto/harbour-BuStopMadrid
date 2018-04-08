@@ -179,7 +179,8 @@ DISTFILES += \
     qml/harbour-bustopmadrid.qml \
     rpm/harbour-bustopmadrid.changes \
     rpm/harbour-bustopmadrid.spec \
-    harbour-bustopmadrid.desktop
+    harbour-bustopmadrid.desktop \
+    qml/pages/LineDetails.qml
 
 RESOURCES += \
     resources.qrc

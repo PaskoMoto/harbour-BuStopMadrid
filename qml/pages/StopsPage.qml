@@ -37,6 +37,14 @@ Page{
     id:pageStops
     property var theLine
     property bool testing_rectangles: false
+    SilicaFlickable {
+    anchors.fill: parent
+    PullDownMenu{
+        MenuItem{
+            text: qsTr("Show Line Details")
+            onClicked: pageStack.push("LineDetails.qml", {theLine: lineName, theColor: lineIcon.border.color})
+        }
+    }
     Item{
         id: headerItem
         width: parent.width
@@ -88,4 +96,5 @@ Page{
         lineLabel.text = output[1]
         lineIcon.border.color = output[2]
     }
+  }
 }
