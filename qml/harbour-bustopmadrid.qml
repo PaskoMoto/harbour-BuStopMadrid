@@ -39,6 +39,7 @@ ApplicationWindow
     id: rootPage
     property bool modules_unloaded: true
     property var var_tiempos_llegada
+    property var var_line_details
     property var var_card_balance: []
     property bool var_updatingdb: false
     property bool var_wipeupdatingdb: false
@@ -68,8 +69,8 @@ ApplicationWindow
                             var_tiempos_llegada = TiemposLlegada;
                             console.log("===> Got some info!!")
                         });
-            setHandler('CardBalance',function(CardBalance){
-                            var_card_balance = CardBalance;
+            setHandler('LineDetails',function(LineDetails){
+                            var_line_details = LineDetails;
                             console.log("===> Got some info!!")
                         });
             setHandler('UpdatingDB',function(UpdatingDB){
@@ -80,6 +81,10 @@ ApplicationWindow
                             var_wipeupdatingdb = WipeUpdatingDB;
                             console.log("===> Got some info!!")
                         });
+/*            setHandler('CardBalance',function(CardBalance){
+                            var_card_balance = CardBalance;
+                            console.log("===> Got some info!!")
+                        });*/
         }
         function ask(stopCode){
             call('api.getTiemposLlegada', [stopCode] , function(parada) {});
@@ -89,9 +94,13 @@ ApplicationWindow
         function checkDB(){
             call('utils.checkDB',[],console.log("DB OK."))
         }
-        function askCardBalance(cardCode){
+/*        function askCardBalance(cardCode){
             call('api.getCardBalance', [cardCode] , function(cardCode) {});
-            console.log("Card Balance requested")
+            console.log("Card Balance requested")*/
+        function askLineDetails(code){
+            call('api.getLineDetails', [code] , function(code) {});
+            var_line_details = []
+            console.log("Line details requested for line:"+code)
         }
         function update_database(){
             call('utils.update_database',[],console.log("Updating the DB."))

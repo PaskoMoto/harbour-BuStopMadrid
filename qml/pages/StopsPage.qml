@@ -42,7 +42,7 @@ Page{
     PullDownMenu{
         MenuItem{
             text: qsTr("Show Line Details")
-            onClicked: pageStack.push("LineDetails.qml", {theLine: lineName, theColor: lineIcon.border.color})
+            onClicked: pageStack.push("LineDetails.qml", {theLine: lineName, theColor: lineIcon.border.color, theLabel:lineLabel})
         }
     }
     Item{

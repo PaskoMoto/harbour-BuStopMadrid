@@ -42,20 +42,39 @@ def getTiemposLlegada(parada = 154):
                  else:
                       line.append(" >20 ")
                  line.append(str(abs(times[item].distance)))
-
-#        for time in times:
-#            line = [time.line_id]
-#            if time.time_left != 999999:
-#                 line.append(str(round(time.time_left/60,)))
-#            else:
-#                 line.append(" >20 ")
-#            line.append(str(abs(time.distance)))
-#            line.append(str(time.destination))
-#            line.append(str(time.bus_id))
-
     else:
         output = [["XX"," ?? ","??","NO SERVICE","??"]]
+
     pyotherside.send('TiemposLlegada',output)
+    print(output)
+    return 1
+
+
+def getLineDetails(linea = 1):
+
+    if type(linea) != type(1):
+        linea = int(linea)
+
+    dd = datetime.today().day
+    mm = datetime.today().month
+    yy = datetime.today().year
+
+    con = Wrapper('WEB.SERV.vendofalco@gmail.com','25C3A749-08E3-45E0-B821-9E8EE8D08A09')
+    timeslines = con.bus.get_times_lines(day=dd,month=mm,year=yy,lines=[linea])[1]
+    output=[]
+    line=[linea]
+
+    for times in timeslines:
+            line.append(times.start_date)
+            line.append(times.end_date)
+            line.append(times.day_type)
+            line.append(times.first_forward[11:15])
+            line.append(times.last_forward[11:15])
+            line.append(times.first_backward[11:15])
+            line.append(times.last_backward[11:15])
+            output.append(line)
+
+    pyotherside.send('LineDetails',output)
     print(output)
     return 1
 

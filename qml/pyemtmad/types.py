@@ -1042,7 +1042,7 @@ class TimesLinesItem(object):
         self.last_forward = kwargs.get('timeEndA').replace('\\', '').strip()
         self.last_backward = kwargs.get('timeEndB').replace('\\', '').strip()
 
-        self.day_type = DAY_TYPES.get(kwargs.get('typeId'), 'Labour')
+        self.day_type = DAY_TYPES.get(kwargs.get('typeDay'), 'Labour')
 
         self._json = kwargs
 

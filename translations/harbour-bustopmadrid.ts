@@ -170,7 +170,7 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="153"/>
+        <location filename="../qml/pages/FrontPage.qml" line="173"/>
         <source>Bus stop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -190,16 +190,8 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="173"/>
+        <location filename="../qml/pages/FrontPage.qml" line="153"/>
         <source>Lines</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LineDetails</name>
-    <message>
-        <location filename="../qml/pages/LineDetails.qml" line="7"/>
-        <source>To be implemented!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

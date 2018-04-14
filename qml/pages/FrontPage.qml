@@ -150,9 +150,9 @@ Page {
 
             model: ListModel{
                 ListElement{
-                    title: qsTr("Bus stop")
-                    icon: "qrc:///res/bus_stop.png"
-                    move2: "BSCodePage.qml"
+                    title: qsTr("Lines")
+                    icon: "image://theme/icon-l-document"
+                    move2: "LinesPage.qml"
                 }
                 ListElement{
                     title: qsTr("Stops map")
@@ -170,10 +170,11 @@ Page {
                     move2: "TBDPage.qml"
                 }
                 ListElement{
-                    title: qsTr("Lines")
-                    icon: "image://theme/icon-l-document"
-                    move2: "LinesPage.qml"
+                    title: qsTr("Bus stop")
+                    icon: "qrc:///res/bus_stop.png"
+                    move2: "BSCodePage.qml"
                 }
+
 /*                ListElement{
                     title: qsTr("Check card balance")
                     icon: "image://theme/icon-l-mobile-network"

@@ -81,8 +81,8 @@ class internal_db:
                     line.header_a = line.header_a.replace("  ","")
                     line.header_b = line.header_b.replace("  ","")
                     data = (line.line,line.header_a+"-- "+line.header_b,line.label,color,category)
-                    data = data + (line.header_a, 1, line.start_date, line.end_date)
-                    data = data + (line.header_b, 2, line.start_date, line.end_date)
+                    data = data + (line.header_a, 2, line.start_date, line.end_date)
+                    data = data + (line.header_b, 1, line.start_date, line.end_date)
                     self.db.execute('INSERT INTO lines VALUES (?,upper(?),?,?,?,upper(?),?,?,?,upper(?),?,?,?)',data)
 
         self.db.execute('UPDATE lines SET name=? where label=?',('CIRCULAR 1','C1'))

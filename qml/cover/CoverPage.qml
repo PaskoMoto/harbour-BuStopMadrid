@@ -32,25 +32,22 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
-        anchors.centerIn: parent
-        text: "BuStop Madrid"
-    }
 
-    CoverActionList {
-        id: coverAction
+     Column {
+         id: column
+         width: parent.width
+         spacing: Theme.paddingMedium
 
-//        CoverAction {
-//            iconSource: "image://theme/icon-cover-next"
-//        }
+         Label {
+             id: label
+             anchors.horizontalCenter: parent.horizontalCenter
+             text: "BuStop Madrid"
+         }
 
-//        CoverAction {
-//            iconSource: "image://theme/icon-cover-pause"
-//        }
-//        CoverAction {
-//            iconSource: "image://theme/icon-cover-play"
-//        }
-    }
+         Image {
+             id: iconobus
+             anchors.horizontalCenter: parent.horizontalCenter
+             source: "qrc:/res/bus_icon.png"
+         }
+     }
 }
-

@@ -68,7 +68,7 @@ SilicaListView{
                 }
                 text: stopName
                 color: Theme.primaryColor
-                font.pixelSize: Theme.fontSizeExtraSmall
+                font.pixelSize: Theme.fontSizeSmall
                 truncationMode: TruncationMode.Fade
                 width: parent.width*0.8
             }

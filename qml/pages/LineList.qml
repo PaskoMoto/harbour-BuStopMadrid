@@ -68,7 +68,7 @@ SilicaListView{
                 anchors.leftMargin: Theme.itemSizeExtraSmall/5
                 text: lineName
                 color: Theme.highlightColor
-                font.pixelSize: Theme.fontSizeExtraSmall
+                font.pixelSize: Theme.fontSizeSmall
                 truncationMode: TruncationMode.Fade
                 width: parent.width*0.75
             }
