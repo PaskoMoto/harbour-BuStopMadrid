@@ -25,7 +25,7 @@ function populateStopData(mylist, stop_code) {
                             var r1 = tx.executeSql(query,[line, section, section])
                             for (var j = 0; j < r1.rows.length; j++){
                                 line_colors[r1.rows.item(j).label] = r1.rows.item(j).color
-                                if (r1.rows.item(j).head_number === section ){
+                                if (r1.rows.item(j).head_number - section === 0 ){
                                     section_names[r1.rows.item(j).label] = r1.rows.item(j).head_name
                                 }
                                 else{
