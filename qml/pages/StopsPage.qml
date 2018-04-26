@@ -42,7 +42,10 @@ Page{
     PullDownMenu{
         MenuItem{
             text: qsTr("Show Line Details")
-            onClicked: pageStack.push("LineDetails.qml", {theLine: lineName, theColor: lineIcon.border.color, theLabel:lineLabel})
+            onClicked: {
+                pythonMain.askLineDetails(theLine);
+                pageStack.push("LineDetails.qml", {line: theLine})
+            }
         }
     }
     Item{

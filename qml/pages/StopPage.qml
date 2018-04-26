@@ -223,7 +223,7 @@ Page {
             model: ListModel{
                 id: stopDataModel
             }
-            delegate: Item{
+            delegate:Item{
                 width: stopPage.width
                 height: Theme.itemSizeHuge
                 Rectangle{

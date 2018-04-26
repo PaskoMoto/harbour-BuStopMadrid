@@ -26,17 +26,17 @@ function populateStopData(mylist, stop_code) {
                             for (var j = 0; j < r1.rows.length; j++){
                                 line_colors[r1.rows.item(j).label] = r1.rows.item(j).color
                                 if (r1.rows.item(j).head_number - section === 0 ){
-                                    section_names[r1.rows.item(j).label] = r1.rows.item(j).head_name
+                                    section_names[r1.rows.item(j).label] = r1.rows.item(j).tail_name
                                 }
                                 else{
-                                    section_names[r1.rows.item(j).label] = r1.rows.item(j).tail_name
+                                    section_names[r1.rows.item(j).label] = r1.rows.item(j).head_name
                                 }
                             }
                         }
                     }
                     )
         for(var i = 0; i < mylist.length; i++){
-           if (mylist[i][0] === "XX"){
+           if (mylist[i][0] === "--"){
                section_names[String(mylist[i][0])] = "NO SERVICE"
            }
         }
@@ -107,8 +107,8 @@ function getStopsData(line, stopsListModel){
 //                    lineName.text = r1.rows.item(0).name;
 //                    lineLabel.text = r1.rows.item(0).label;
 //                    lineIcon.border.color = r1.rows.item(0).color;
-                    section_names[0] = [r1.rows.item(0).head_number,r1.rows.item(0).head_name];
-                    section_names[1] = [r1.rows.item(0).tail_number,r1.rows.item(0).tail_name];
+                    section_names[0] = [r1.rows.item(0).head_number,r1.rows.item(0).tail_name];
+                    section_names[1] = [r1.rows.item(0).tail_number,r1.rows.item(0).head_name];
                 }
                 )
     db.transaction(
@@ -228,4 +228,31 @@ function getUsualStopsData(){
                     }
                 }
                 )
+}
+function getLineDetailsData(mylist, line){
+console.log("mylist "+ mylist.length)
+//    lineDetailsModel.clear()
+if (mylist){
+    var db = LocalStorage.openDatabaseSync("bustopmadridDB","1.0","Internal data for hitmemap! app.",1000000)
+    db.transaction(
+                function(tx){
+                    var query = 'SELECT name, label, color FROM lines WHERE code=?'
+                    var r1 = tx.executeSql(query,[line])
+                    title.text = r1.rows.item(0).label
+                    subTitle.text = r1.rows.item(0).name
+                    icon.border.color = r1.rows.item(0).color
+                    for(var i = 0; i < mylist.length; i++){
+                                lineDetailsModel.append({
+                                    "dayType": mylist[i][0],
+                                    "startDate": mylist[i][1],
+                                    "endDate": mylist[i][2],
+                                    "first_forward": mylist[i][3],
+                                    "last_forward": mylist[i][4],
+                                    "first_backward": mylist[i][5],
+                                    "last_backward": mylist[i][6],
+                                                })
+                        }
+                }
+                )
+}
 }

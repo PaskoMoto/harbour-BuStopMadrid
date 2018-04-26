@@ -91,16 +91,13 @@ ApplicationWindow
             var_tiempos_llegada = []
             console.log("Details requested.")
         }
-        function checkDB(){
-            call('utils.checkDB',[],console.log("DB OK."))
-        }
-/*        function askCardBalance(cardCode){
-            call('api.getCardBalance', [cardCode] , function(cardCode) {});
-            console.log("Card Balance requested")*/
         function askLineDetails(code){
-            call('api.getLineDetails', [code] , function(code) {});
+            call('api.getLineDetails', [code] , function(linea) {});
             var_line_details = []
             console.log("Line details requested for line:"+code)
+        }
+        function checkDB(){
+            call('utils.checkDB',[],console.log("DB OK."))
         }
         function update_database(){
             call('utils.update_database',[],console.log("Updating the DB."))
@@ -108,6 +105,10 @@ ApplicationWindow
         function wipe_update_database(){
             call('utils.wipe_update_database',[],console.log("Wiping and updating the DB."))
         }
+/*        function askCardBalance(cardCode){
+              call('api.getCardBalance', [cardCode] , function(cardCode) {});
+              console.log("Card Balance requested")
+*/
         onReceived:
         {
             // All the stuff you send, not assigned to a 'setHandler', will be shown here:

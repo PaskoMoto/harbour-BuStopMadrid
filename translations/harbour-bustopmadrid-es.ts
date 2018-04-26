@@ -135,64 +135,108 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
 <context>
     <name>FrontPage</name>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="64"/>
+        <location filename="../qml/pages/FrontPage.qml" line="59"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="70"/>
+        <location filename="../qml/pages/FrontPage.qml" line="65"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="76"/>
+        <location filename="../qml/pages/FrontPage.qml" line="71"/>
         <source>Official rates (website)</source>
         <translation>Tarifas oficiales (sitio web)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="82"/>
+        <location filename="../qml/pages/FrontPage.qml" line="77"/>
         <source>BuStop Madrid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="101"/>
+        <location filename="../qml/pages/FrontPage.qml" line="96"/>
         <source>Ask for a bus stop code</source>
         <translation>Consulta un código de parada</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="102"/>
+        <location filename="../qml/pages/FrontPage.qml" line="97"/>
         <source>Bus stop code</source>
         <translation>Código de parada</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="119"/>
+        <location filename="../qml/pages/FrontPage.qml" line="114"/>
         <source>Ask!</source>
         <translation>¡Consultar!</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="173"/>
+        <location filename="../qml/pages/FrontPage.qml" line="168"/>
         <source>Bus stop</source>
         <translation>Parada</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="158"/>
+        <location filename="../qml/pages/FrontPage.qml" line="153"/>
         <source>Stops map</source>
         <translation>Mapa de paradas</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="163"/>
+        <location filename="../qml/pages/FrontPage.qml" line="158"/>
         <source>Usual stops</source>
         <translation>Mis paradas</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="168"/>
+        <location filename="../qml/pages/FrontPage.qml" line="163"/>
         <source>Nearest stops</source>
         <translation>Paradas cercanas</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FrontPage.qml" line="153"/>
+        <location filename="../qml/pages/FrontPage.qml" line="148"/>
         <source>Lines</source>
         <translation>Líneas</translation>
+    </message>
+</context>
+<context>
+    <name>LineDetails</name>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="98"/>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="56"/>
+        <source>Loading...</source>
+        <translation type="unfinished">Cargando...</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="164"/>
+        <source> until </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="164"/>
+        <source>Schedules valid from:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="149"/>
+        <source>First forward: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="149"/>
+        <source>. Last forward: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="156"/>
+        <source>First backward: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="156"/>
+        <source>. Last backward: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -251,11 +295,6 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
         <translation>Actualizando</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="83"/>
-        <source>Use this option to wipe and populate database from scratch. Notice you will only get the current available lines by the time of the day and the database should be manually updated -not wiped- when the other lines are available. This may take a while.</source>
-        <translation>Utilice esta opción para vaciar y volver a poblar la base de datos desde cero. Tenga en cuenta que sólo obtendrá las líneas disponibles en ese momento del día, y que la base de datos deberá ser actualizada manualmente -no vaciada- cuando el resto de líneas estén disponibles. Esto puede llevar un tiempo.</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/Settings.qml" line="101"/>
         <source>Wiping and updating</source>
         <translation>Borrando y actualizando</translation>
@@ -264,6 +303,11 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
         <location filename="../qml/pages/Settings.qml" line="77"/>
         <source>Wipe and update database</source>
         <translation>Borrar y actualizar base de datos</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Settings.qml" line="83"/>
+        <source>Use this option to wipe and populate database from scratch. Notice you will only get the current available lines by the time of the day and the database should be manually updated -not wiped- when the other lines are available. This may usually take up to 10 minutes.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="87"/>

@@ -27,77 +27,153 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtGraphicalEffects 1.0
 import QtQuick.LocalStorage 2.0
 import "utils.js" as MyUtils
-/*
+
 Page {
-    Label{
-        anchors.centerIn: parent
-        text: qsTr("To be implemented!")
-    }
-    Component.onCompleted: {
-        rootPage.current_page = ['TBDPage']
-    }
-}*/
-Page{
-    id:lineDetails
+    id:detailsPage
+    property string line
     property bool testing_rectangles: false
-    function selectLineDetails(){
-       pythonMain.askLineDetails(38)
-    }
-    Item{
-        id: headerItem
-        width: parent.width
-        height: Theme.itemSizeMedium
-        Label{
-            id: lineName
-            anchors{
-                left: parent.left
-                leftMargin: Theme.itemSizeExtraSmall/2
-                right: lineIcon.left
-                rightMargin: Theme.itemSizeExtraSmall/6
-                verticalCenter: parent.verticalCenter
+    SilicaFlickable{
+        anchors.fill: parent
+        ViewPlaceholder {
+            id: loadingIndicator
+//            enabled: if (var_line_details[0] == undefined){
+            enabled: if (lineDetails.count === 0){
+                         MyUtils.getLineDetailsData(rootPage.var_line_details, line);
+                         return true
+                     }
+                     else{
+                         console.log(var_line_details[0])
+                         console.log(var_line_details[1])
+                         console.log(var_line_details[2])
+                         return false
+                     }
+            text: qsTr("Loading...")
+            BusyIndicator {
+                anchors{
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.bottom
+                    topMargin: Theme.itemSizeExtraSmall/2
+                }
+                size: BusyIndicatorSize.Large
+                running: parent.enabled
             }
-            width: parent.width - lineIcon.width - lineIcon.anchors.rightMargin - anchors.rightMargin - anchors.leftMargin
+            Rectangle{
+                visible: testing_rectangles
+                anchors.fill: parent
+                color: "transparent"
+                border.color: "white"
+            }
+        }
+        Label{
+            id: subTitle
+            visible: ! loadingIndicator.enabled
+            anchors{
+                top: parent.top
+                topMargin: Theme.itemSizeExtraSmall/2
+                left: parent.left
+                right: icon.left
+                leftMargin: Theme.itemSizeExtraSmall/3
+//                verticalCenter: parent.verticalCenter
+            }
+            width: detailsPage.width*0.8
             truncationMode: TruncationMode.Fade
+            font.pixelSize: Theme.fontSizeMedium
+            font.bold: true
+            color: Theme.secondaryColor
         }
         Rectangle{
-            id: lineIcon
-            anchors.right: parent.right
-            anchors.rightMargin: Theme.itemSizeExtraSmall/6
-            anchors.verticalCenter: parent.verticalCenter
-            color: 'transparent'
-            height: Theme.itemSizeSmall
-            width: height
-            radius: width*0.5
-            border{
-                width: parent.width/100
-            }
-            Label {
-                id: lineLabel
-                anchors.centerIn: parent
-                color: Theme.primaryColor
-                font.pixelSize: Theme.fontSizeMedium
-                font.bold: true
-            }
+        id: icon
+        visible: ! loadingIndicator.enabled
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.itemSizeExtraSmall/6
+        anchors.verticalCenter: subTitle.verticalCenter
+        color: 'transparent'
+        height: Theme.itemSizeSmall
+        width: height
+        radius: width*0.5
+        border{
+            width: parent.width/100
         }
+        Label{
+            id: title
+            visible: ! loadingIndicator.enabled
+            anchors{
+                verticalCenter: icon.verticalCenter
+                horizontalCenter: icon.horizontalCenter
             }
-    StopsList{
-        anchors.top: headerItem.bottom
-        model: ListModel{
-            id: mymodel
+            font.pixelSize: Theme.fontSizeSmall
+            font.bold: true
+          }
         }
+       SilicaListView {
+           id: lineDetails
+           visible: ! loadingIndicator.enabled
+           width: parent.width
+           height: detailsPage.height - subTitle.height
+           clip: true
+           anchors{
+               top: parent.top
+               topMargin: Theme.itemSizeMedium
+               left: parent.left
+               right: parent.right
+               rightMargin: Theme.itemSizeExtraSmall/3
+               leftMargin: Theme.itemSizeExtraSmall/3
+           }
+           spacing: Theme.itemSizeSmall
+           model: ListModel {id: lineDetailsModel}
+           delegate: BackgroundItem {
+                               Label {
+                                   id: typeDay
+                                   text: dayType
+                                   font.pixelSize: Theme.fontSizeSmall
+                                   font.bold: true
+                                   anchors.top: parent.top
+                                   anchors.topMargin: Theme.itemSizeExtraSmall/5
+                               }
+                               Item{
+                                   id: details
+                                   height: Theme.itemSizeSmall/1.5
+                                   anchors{
+                                       left: typeDay.left
+                                       top: typeDay.bottom
+                                       bottomMargin: Theme.itemSizeExtraSmall/50
+                                   }
+                                           Label {
+                                               id: forward
+                                               text: qsTr("First forward: ")+first_forward+qsTr(". Last forward: ")+last_forward
+                                               font.pixelSize: Theme.fontSizeSmall
+                                               font.bold: true
+                                               anchors.left: parent.left
+                                           }
+                                           Label {
+                                               id: backward
+                                               text: qsTr("First backward: ")+first_backward+qsTr(". Last backward: ")+last_backward
+                                               font.pixelSize: Theme.fontSizeSmall
+                                               font.bold: true
+                                               anchors.top: forward.bottom
+                                               anchors.left: parent.left
+                                           }
+                                           Label {
+                                               id: startend
+                                               text: qsTr("Schedules valid from:\n")+startDate+qsTr(" until ")+endDate
+                                               font.pixelSize: Theme.fontSizeSmall
+                                               anchors.topMargin: Theme.itemSizeExtraSmall/50
+                                               anchors.bottomMargin: Theme.itemSizeExtraSmall/50
+                                               anchors.top: backward.bottom
+                                               anchors.left: forward.left
+                                           }
+                             }
+                           }
+       }
+  }
+    Component.onCompleted: {
+        rootPage.current_page = ['DetailsPage']
     }
 
-    Component.onCompleted: {
-        rootPage.current_page = ['lineDetails']
-//        output = []
-//        var output = selectLineDetails(theLine, mymodel)
-        var output = MyUtils.getStopsData(lineName, mymodel)
-        lineName.text = output[0]
-        lineLabel.text = output[1]
-        lineIcon.border.color = output[2]
-    }
 }

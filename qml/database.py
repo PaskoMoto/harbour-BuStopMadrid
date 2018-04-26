@@ -104,9 +104,9 @@ class internal_db:
                    lineinfo = ":"
                    for line in node.lines:
                        if line[1] == 'forward':
-                           lineinfo = lineinfo+str(line[0])+".2:"
-                       else:
                            lineinfo = lineinfo+str(line[0])+".1:"
+                       else:
+                           lineinfo = lineinfo+str(line[0])+".2:"
                    data = (node.id, node.name, node.latitude, node.longitude, "667", lineinfo)
                    self.db.execute('INSERT INTO nodes VALUES (?,upper(?),?,?,?,?)',data)
 

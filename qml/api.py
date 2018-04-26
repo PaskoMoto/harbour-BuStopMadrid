@@ -43,7 +43,7 @@ def getTiemposLlegada(parada = 154):
                       line.append(" >20 ")
                  line.append(str(abs(times[item].distance)))
     else:
-        output = [["XX"," ?? ","??","NO SERVICE","??"]]
+        output = [["--"," ?? ","??","NO SERVICE","??"]]
 
     pyotherside.send('TiemposLlegada',output)
     print(output)
@@ -60,22 +60,23 @@ def getLineDetails(linea = 1):
     yy = datetime.today().year
 
     con = Wrapper('WEB.SERV.vendofalco@gmail.com','25C3A749-08E3-45E0-B821-9E8EE8D08A09')
-    timeslines = con.bus.get_times_lines(day=dd,month=mm,year=yy,lines=[linea])[1]
-    output=[]
-    line=[linea]
-
-    for times in timeslines:
-            line.append(times.start_date)
-            line.append(times.end_date)
-            line.append(times.day_type)
-            line.append(times.first_forward[11:15])
-            line.append(times.last_forward[11:15])
-            line.append(times.first_backward[11:15])
-            line.append(times.last_backward[11:15])
-            output.append(line)
-
-    pyotherside.send('LineDetails',output)
+    timeslines = con.bus.get_times_lines(day=dd,month=mm,year=yy,lines=linea)#[1]
+    if timeslines[0] == True:
+            output=[]
+            timeslines = timeslines[1]
+            for detail in timeslines:
+                    line = [detail.day_type]
+                    line.append(detail.start_date)
+                    line.append(detail.end_date)
+                    line.append(detail.first_forward[10:15])
+                    line.append(detail.last_forward[10:16])
+                    line.append(detail.first_backward[10:15])
+                    line.append(detail.last_backward[10:16])
+                    output.append(line)
+    else:
+        output=[[]]
     print(output)
+    pyotherside.send('LineDetails',output)
     return 1
 
 # def getCardBalance(cardCode):

@@ -34,13 +34,8 @@ import io.thp.pyotherside 1.3
 
 Page {
     id: page
-    property var var_tiempos_llegada: ""
     property bool modules_unloaded: true
     property var searchStop: "0"
-    function pushAskButton(){
-        pythonMain.ask();
-        var_tiempos_llegada = [];
-    }
     function toggleBusStopBlock(){
         if (busStopBlock.visible){
             busStopBlock.visible = false;
