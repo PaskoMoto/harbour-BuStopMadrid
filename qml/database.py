@@ -112,18 +112,20 @@ class internal_db:
 
         self.db.execute("SELECT label, code, head_number, tail_number FROM lines")
         for line, code, head, tail in self.db.fetchall():
+            check = self.emtmad.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[0]
             raw_data = self.emtmad.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[1]
-            if len(raw_data) > 0:
+#            if len(raw_data) > 0:
+            if check:
 
                 section = 1   # head-to-tail
                 if section != None:
                     node_list = []
                     distance_list = []
                     way = str(code)+"."+str(section)
-                    for remot_node in raw_data:
-                         if remot_node.node_type == 'forward_stop':
-                              node_list.append(str(remot_node.id))
-                              distance_list.append(str(remot_node.distance_orig))
+                    for remote_node in raw_data:
+                         if remote_node.node_type == 'forward_stop':
+                              node_list.append(str(remote_node.id))
+                              distance_list.append(str(remote_node.distance_orig))
                     temp = (code, line, int(section),)
                     self.db.execute('SELECT nodes, distance FROM line_nodes WHERE line_code=? AND line_label=? AND section=?', temp)
                     local_data = self.db.fetchone()

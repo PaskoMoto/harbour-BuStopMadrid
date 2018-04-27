@@ -85,54 +85,6 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
     </message>
 </context>
 <context>
-    <name>CardBalancePage</name>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="29"/>
-        <source>Card Balance</source>
-        <translation>Saldo de bonobús</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="78"/>
-        <source>Nº</source>
-        <translation>Nº</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="102"/>
-        <source>Card type: </source>
-        <translation>Tipo de bonobús: </translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="125"/>
-        <source>Expiration: </source>
-        <translation>Caducidad: </translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="148"/>
-        <source>Balance: </source>
-        <translation>Saldo: </translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="171"/>
-        <source>Remaining trips: </source>
-        <translation>Viajes restantes: </translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="203"/>
-        <source>Enter your card code</source>
-        <translation>Introduzca el código de su tarjeta</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="205"/>
-        <source>The card code is 12 digits long</source>
-        <translation>El código de la tarjeta tiene 12 dígitos</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/CardBalancePage.qml" line="255"/>
-        <source>Ask!</source>
-        <translation>¡Consultar!</translation>
-    </message>
-</context>
-<context>
     <name>FrontPage</name>
     <message>
         <location filename="../qml/pages/FrontPage.qml" line="59"/>
@@ -203,42 +155,42 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="56"/>
+        <location filename="../qml/pages/LineDetails.qml" line="55"/>
         <source>Loading...</source>
         <translation type="unfinished">Cargando...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="164"/>
+        <location filename="../qml/pages/LineDetails.qml" line="162"/>
         <source> until </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="149"/>
+        <location filename="../qml/pages/LineDetails.qml" line="147"/>
         <source>First forward: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="133"/>
+        <location filename="../qml/pages/LineDetails.qml" line="131"/>
         <source>--</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="149"/>
+        <location filename="../qml/pages/LineDetails.qml" line="147"/>
         <source>. Last forward: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="156"/>
+        <location filename="../qml/pages/LineDetails.qml" line="154"/>
         <source>First backward: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="156"/>
+        <location filename="../qml/pages/LineDetails.qml" line="154"/>
         <source>. Last backward: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="164"/>
+        <location filename="../qml/pages/LineDetails.qml" line="162"/>
         <source>Schedules valid:
 From </source>
         <translation type="unfinished"></translation>
@@ -395,7 +347,7 @@ From </source>
         <translation>Tus paradas</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UsualStopsPage.qml" line="121"/>
+        <location filename="../qml/pages/UsualStopsPage.qml" line="120"/>
         <source>Remove</source>
         <translation>Eliminar</translation>
     </message>
