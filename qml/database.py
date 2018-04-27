@@ -112,10 +112,10 @@ class internal_db:
 
         self.db.execute("SELECT label, code, head_number, tail_number FROM lines")
         for line, code, head, tail in self.db.fetchall():
-            check = self.emtmad.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[0]
-            raw_data = self.emtmad.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)[1]
-#            if len(raw_data) > 0:
-            if check:
+            lineinfo = self.emtmad.bus.get_route_lines(day=dd,month=mm,year=yy,lines=code)
+            status_ok = lineinfo[0]
+            raw_data = lineinfo[1]
+            if status_ok:
 
                 section = 1   # head-to-tail
                 if section != None:
