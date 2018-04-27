@@ -51,7 +51,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeExtraSmall
-                text:"Carmen Fernández"
+                text:"Pasko"
             }
             Label{
                 text: qsTr("License")

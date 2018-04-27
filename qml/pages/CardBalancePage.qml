@@ -4,7 +4,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
-    property bool testing_rectangles: false
+/*    property bool testing_rectangles: false
     property bool cardBalanceInfo: if (rootPage.var_card_balance.length > 1 && rootPage.var_card_balance[0] !== -1){
                                        console.log("There is something")
                                        loading = false
@@ -273,5 +273,5 @@ Page {
         rootPage.current_page = ['CardBalancePage']
         rootPage.var_card_balance = []
         console.log("var_card_balance"+rootPage.var_card_balance+".")
-    }
+    }*/
 }

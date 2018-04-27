@@ -251,8 +251,8 @@ if (mylist){
                                     "first_backward": mylist[i][5],
                                     "last_backward": mylist[i][6],
                                                 })
-                        }
-                }
+                                    }
+                    }
                 )
-}
+         }
 }

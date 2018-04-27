@@ -91,7 +91,6 @@ Page{
                 width: parent.width - Theme.itemSizeMedium
                 truncationMode: TruncationMode.Fade
                 horizontalAlignment: Text.AlignLeft
-                //text: custom_label // This is the real field here; needs Usual Stop Dialog TBD first
                 text: name
             }
             Label{

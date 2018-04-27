@@ -225,13 +225,6 @@ Page {
     Component.onCompleted: {
         rootPage.current_page = ['StopsMap']
         MyUtils.getLines(listOfLines)
-//        TO BE DONE
-//        listOfLines.insert(0, {"lineNumber": "",
-//                               "lineName": qsTr("Near stops"),
-//                               "lineColor": "",
-//                               "lineType": "",
-//                               "code": -1
-//                           })
     }
 }
 

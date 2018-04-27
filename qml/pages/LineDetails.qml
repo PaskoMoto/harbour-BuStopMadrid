@@ -42,7 +42,6 @@ Page {
         anchors.fill: parent
         ViewPlaceholder {
             id: loadingIndicator
-//            enabled: if (var_line_details[0] == undefined){
             enabled: if (lineDetails.count === 0){
                          MyUtils.getLineDetailsData(rootPage.var_line_details, line);
                          return true
@@ -79,7 +78,6 @@ Page {
                 left: parent.left
                 right: icon.left
                 leftMargin: Theme.itemSizeExtraSmall/3
-//                verticalCenter: parent.verticalCenter
             }
             width: detailsPage.width*0.8
             truncationMode: TruncationMode.Fade
@@ -163,8 +161,6 @@ Page {
                                                id: startend
                                                text: qsTr("Schedules valid:\nFrom ")+startDate+qsTr(" until ")+endDate
                                                font.pixelSize: Theme.fontSizeSmall
-//                                               anchors.topMargin: Theme.itemSizeExtraSmall/50
-//                                               anchors.bottomMargin: Theme.itemSizeSmall
                                                anchors.top: backward.bottom
                                                anchors.left: forward.left
                                            }
