@@ -65,7 +65,7 @@ def getLineDetails(linea = 1):
             output=[]
             timeslines = timeslines[1]
             for detail in timeslines:
-                    line = [detail.day_type]
+                    line = [detail.day_type.upper()]
                     line.append(detail.start_date)
                     line.append(detail.end_date)
                     line.append(detail.first_forward[10:15])

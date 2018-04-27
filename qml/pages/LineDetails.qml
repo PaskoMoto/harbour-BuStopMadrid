@@ -119,18 +119,18 @@ Page {
            clip: true
            anchors{
                top: parent.top
-               topMargin: Theme.itemSizeMedium
+               topMargin: Theme.itemSizeSmall
                left: parent.left
                right: parent.right
                rightMargin: Theme.itemSizeExtraSmall/3
                leftMargin: Theme.itemSizeExtraSmall/3
            }
-           spacing: Theme.itemSizeSmall
+           spacing: Theme.itemSizeMedium*1.5
            model: ListModel {id: lineDetailsModel}
            delegate: BackgroundItem {
                                Label {
                                    id: typeDay
-                                   text: dayType
+                                   text: qsTr("--")+dayType+qsTr("--")
                                    font.pixelSize: Theme.fontSizeSmall
                                    font.bold: true
                                    anchors.top: parent.top
@@ -161,19 +161,23 @@ Page {
                                            }
                                            Label {
                                                id: startend
-                                               text: qsTr("Schedules valid from:\n")+startDate+qsTr(" until ")+endDate
+                                               text: qsTr("Schedules valid:\nFrom ")+startDate+qsTr(" until ")+endDate
                                                font.pixelSize: Theme.fontSizeSmall
-                                               anchors.topMargin: Theme.itemSizeExtraSmall/50
-                                               anchors.bottomMargin: Theme.itemSizeExtraSmall/50
+//                                               anchors.topMargin: Theme.itemSizeExtraSmall/50
+//                                               anchors.bottomMargin: Theme.itemSizeSmall
                                                anchors.top: backward.bottom
                                                anchors.left: forward.left
                                            }
                              }
+                               Separator {
+                                   height: Theme.itemSizeExtraSmall/40
+                                   width: parent.width*2/3
+                                   color: Theme.secondaryColor
+                               }
                            }
        }
   }
     Component.onCompleted: {
         rootPage.current_page = ['DetailsPage']
     }
-
 }

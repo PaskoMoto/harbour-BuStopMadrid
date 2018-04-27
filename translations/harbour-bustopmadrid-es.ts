@@ -213,14 +213,13 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="164"/>
-        <source>Schedules valid from:
-</source>
+        <location filename="../qml/pages/LineDetails.qml" line="149"/>
+        <source>First forward: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LineDetails.qml" line="149"/>
-        <source>First forward: </source>
+        <location filename="../qml/pages/LineDetails.qml" line="133"/>
+        <source>--</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -236,6 +235,12 @@ This app depends on pyemtmad libs for easy use of SOAP web services.</source>
     <message>
         <location filename="../qml/pages/LineDetails.qml" line="156"/>
         <source>. Last backward: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LineDetails.qml" line="164"/>
+        <source>Schedules valid:
+From </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
