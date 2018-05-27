@@ -7,52 +7,6 @@
 
 # * date Author's Name <author's email> version-release
 # - Summary of changes
-* Fri Apr 6 2018 pasko <vendofalco@gmail.com> 0.9-2
+* Fri May 27 2018 pasko <vendofalco@gmail.com> 0.1-0
 - First bump with Madrid's api.
-
-* Sun Feb 25 2018 J.Pablo Navarro <elfio@hiperones.es> 0.9-1
-- Added map with lines and stops.
-
-* Sun Feb 25 2018 J.Pablo Navarro <elfio@hiperones.es> 0.8-1
-- Added settings page.
-- Added db updater.
-- Updated spanish translation.
-
-* Sat Nov 18 2017 J.Pablo Navarro <elfio@hiperones.es> 0.7-1
-- Added Balance check.
-- Updated spanish translation.
-- Cleaned cache files from suds.
-- Minor changes.
-
-* Wed Jul 29 2017 J.Pablo Navarro <elfio@hiperones.es> 0.6-2
-- Fixed section names.
-
-* Wed Jul 29 2017 J.Pablo Navarro <elfio@hiperones.es> 0.6-1
-- Lines are sorted.
-- Basic Usual stops implemented.
-
-* Wed Jul 25 2017 J.Pablo Navarro <elfio@hiperones.es> 0.5-1
-- Implemented DB as backed for the data.
-- Updated data to more recent stops and lines.
-- Some UI improvements.
-- Other fixes.
-
-* Wed Jul 7 2017 J.Pablo Navarro <elfio@hiperones.es> 0.4-1
-- Added cover.
-
-* Sun Jun 18 2017 J.Pablo Navarro <elfio@hiperones.es> 0.3-1
-- New UI.
-
-* Thu Dec 29 2016 J.Pablo Navarro <elfio@hiperones.es> 0.2-1
-- Added icon.
-- Added numerical keyboard for enter the bus stop.
-- Improved margins.
-- Added distance stimation in meters.
-- Added line and bus stops data base.
-- Added bus stop selection.
-- Added About page.
-- Minor improvements.
-
-* Sun Dec 11 2016 J.Pablo Navarro <elfio@hiperones.es> 0.1-1
-- Initial release.
 
