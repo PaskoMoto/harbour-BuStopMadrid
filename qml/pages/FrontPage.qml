@@ -35,7 +35,7 @@ import io.thp.pyotherside 1.3
 Page {
     id: page
     property bool modules_unloaded: true
-    property var searchStop: "0"
+    property string searchStop: "0"
     function toggleBusStopBlock(){
         if (busStopBlock.visible){
             busStopBlock.visible = false;
@@ -56,20 +56,24 @@ Page {
             }
             PullDownMenu{
                 MenuItem{
-                    text: qsTr("Settings")
-                    onClicked: {
-                        pageStack.push("Settings.qml")
-                    }
-                }
-                MenuItem{
                     text: qsTr("About")
                     onClicked: {
                         pageStack.push("About.qml")
                     }
                 }
                 MenuItem{
-                    text: qsTr("Official rates (website)")
-                    onClicked: Qt.openUrlExternally("http://www.emtmadrid.es/ViajarenBus/Titulosytarifas")
+                    text: qsTr("Tickets and fares (website)")
+                    onClicked: Qt.openUrlExternally("http://www.emtmadrid.es/ViajarenBus/Titulosytarifas?lang=en-GB")
+                }
+                MenuItem{
+                    text: qsTr("EMT Incidents (website)")
+                    onClicked: Qt.openUrlExternally("http://www.emtmadrid.es/EMTBUS/Incidencias?lang=en-GB")
+                }
+                MenuItem{
+                    text: qsTr("Settings")
+                    onClicked: {
+                        pageStack.push("Settings.qml")
+                    }
                 }
             }
             PageHeader{

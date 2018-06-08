@@ -7,6 +7,11 @@
 
 # * date Author's Name <author's email> version-release
 # - Summary of changes
+* Fri Jun 08 2018 pasko <vendofalco@gmail.com> 0.2-0
+- Added all python library dependencies to the rpm package.
+- Added external link to Fares WebPage in English.
+- Added external link to Incidents WebPage in English.
+- Fixed issue parsing times when accessing line's timetables: LineDetails.qml.
 * Fri May 27 2018 pasko <vendofalco@gmail.com> 0.1-0
 - First bump with Madrid's api.
 

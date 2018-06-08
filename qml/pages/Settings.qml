@@ -80,7 +80,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.Wrap
                 font.pixelSize: Theme.fontSizeExtraSmall
-                text: qsTr("Use this option to wipe and populate database from scratch. Notice you will only get the current available lines by the time of the day and the database should be manually updated -not wiped- when the other lines are available. This may usually take up to 10 minutes.")
+                text: qsTr("Use this option to wipe and populate database from scratch. Notice you will only get the current available lines by the time of the day and the database should be manually updated -not wiped- when the other lines are available. This may usually take up to 15 minutes.")
             }
             Button{
                 anchors.horizontalCenter: parent.horizontalCenter
