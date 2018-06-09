@@ -68,10 +68,10 @@ def getLineDetails(linea = 1):
                     line = [detail.day_type.upper()]
                     line.append(detail.start_date)
                     line.append(detail.end_date)
-                    line.append(detail.first_forward[10:15])
-                    line.append(detail.last_forward[10:16])
-                    line.append(detail.first_backward[10:15])
-                    line.append(detail.last_backward[10:16])
+                    line.append(detail.first_forward.split(" ")[1][0:-3])
+                    line.append(detail.last_forward.split(" ")[1][0:-3])
+                    line.append(detail.first_backward.split(" ")[1][0:-3])
+                    line.append(detail.last_backward.split(" ")[1][0:-3])
                     output.append(line)
     else:
         output=[[]]
