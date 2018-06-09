@@ -7,6 +7,9 @@
 
 # * date Author's Name <author's email> version-release
 # - Summary of changes
+* Sat Jun 09 2018 pasko <vendofalco@gmail.com> 0.3-0
+- Fixed bug when copying databases while running the app for the 1st time.
+- Included missing python dependency (six).
 * Fri Jun 08 2018 pasko <vendofalco@gmail.com> 0.2-0
 - Added all python library dependencies to the rpm package.
 - Added external link to Fares WebPage in English.

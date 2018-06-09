@@ -21,7 +21,7 @@ This file contains some utility functions used in the API interface.
 """
 
 import ssl
-import six
+#import six
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.poolmanager import PoolManager
 
@@ -131,9 +131,11 @@ def ints_to_string(ints):
         str: Formatted string
     """
     if not isinstance(ints, list):
-        return six.u(str(ints))
+#        return six.u(str(ints))
+        return str(ints)
 
-    return '|'.join(six.u(str(l)) for l in ints)
+#    return '|'.join(six.u(str(l)) for l in ints)
+    return '|'.join(str(l) for l in ints)
 
 def language_code(code):
     """Generate the ``cultureInfo`` language code for the API.
