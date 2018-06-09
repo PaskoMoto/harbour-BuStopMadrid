@@ -7,6 +7,7 @@ from database import internal_db
 
 def checkDB():
     source = '/usr/share/harbour-bustopmadrid/db'
+    path = os.path.join(os.getenv("HOME"),".local/share/harbour-bustopmadrid/harbour-bustopmadrid/QML/OfflineStorage/Databases/")
     db_location = __get_db_location__()
     ini_location = __get_ini_location__()
     if os.path.isfile(ini_location) and os.path.isfile(db_location):
@@ -14,6 +15,8 @@ def checkDB():
     else:
         if not os.path.exists(path):
             os.makedirs(path)
+            db_name = 'bustopmadridDB'
+            db_hash = hash(db_name)
         copyfile(os.path.join(source,db_hash+".ini"),ini_location)
         copyfile(os.path.join(source,db_hash+".sqlite"),db_location)
         return 1
